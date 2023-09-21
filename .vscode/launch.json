@@ -1,0 +1,285 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "name": "load_nsc_dataset",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/nsc_data_process.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--input_file",
+                "./data/nsc_train_text.txt",
+                "--output_file",
+                "./data/nsc_train.mindrecord",
+                "--max_length",
+                "1025"
+            ]
+        },
+
+        {
+            "name": "sdp_dataset",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/nsc_data_process.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--input_file",
+                "./data/sdp/sdp.txt",
+                "--output_file",
+                "./data/sdp/sdp.mindrecord",
+                "--max_length",
+                "1025"
+            ]
+        },
+
+        {
+            "name": "raw_sdp_dataset",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/nsc_data_process.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--input_file",
+                "./data/sdp/sdp_raw.txt",
+                "--output_file",
+                "./data/sdp/sdp_raw.mindrecord",
+                "--max_length",
+                "1025"
+            ]
+        },
+        {
+            "name": "1_collection_dataset",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/nsc_data_process.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--input_file",
+                "./data/nsc_collection_1.txt",
+                "--output_file",
+                "./data/nsc_collection_1.mindrecord",
+                "--max_length",
+                "1025"
+            ]
+        },
+
+        {
+            "name": "2_collection_dataset",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/nsc_data_process.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--input_file",
+                "./data/nsc_collection_2.txt",
+                "--output_file",
+                "./data/nsc_collection_2.mindrecord",
+                "--max_length",
+                "1025"
+            ]
+        },
+
+        {
+            "name": "nsc finetune gpt2 ",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/run_mindformer.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--config",
+                "./nsc_config/nsc.yaml",
+                "--run_mode",
+                "finetune",
+                "--load_checkpoint",
+                "./checkpoint_download/gpt2/gpt2.ckpt",
+                "--device_target",
+                "GPU",
+                "--train_dataset_dir",
+                "./data/nsc_train.mindrecord"
+            ]
+        },
+
+        {
+            "name": "1 finetune gpt2 ",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/run_mindformer.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--config",
+                "./nsc_config/collection_1.yaml",
+                "--run_mode",
+                "finetune",
+                "--load_checkpoint",
+                "./checkpoint_download/gpt2/gpt2.ckpt",
+                "--device_target",
+                "GPU",
+                "--train_dataset_dir",
+                "./data/nsc_collection_1.mindrecord"
+            ]
+        },
+
+        {
+            "name": "2 finetune gpt2 ",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/run_mindformer.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--config",
+                "./nsc_config/collection_2.yaml",
+                "--run_mode",
+                "finetune",
+                "--load_checkpoint",
+                "./checkpoint_download/gpt2/gpt2.ckpt",
+                "--device_target",
+                "GPU",
+                "--train_dataset_dir",
+                "./data/nsc_collection_2.mindrecord"
+            ]
+        },
+
+        {
+            "name": "finetune sdp raw",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/run_mindformer.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--config",
+                "./nsc_config/collection_2.yaml",
+                "--run_mode",
+                "finetune",
+                "--load_checkpoint",
+                "./checkpoint_download/gpt2/gpt2.ckpt",
+                "--device_target",
+                "GPU",
+                "--train_dataset_dir",
+                "./data/sdp/sdp_raw.mindrecord"
+            ]
+        },
+
+        {
+            "name": "finetune sdp",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/run_mindformer.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--config",
+                "./nsc_config/collection_2.yaml",
+                "--run_mode",
+                "finetune",
+                "--load_checkpoint",
+                "./checkpoint_download/gpt2/gpt2.ckpt",
+                "--device_target",
+                "GPU",
+                "--train_dataset_dir",
+                "./data/sdp/sdp.mindrecord"
+            ]
+        },
+    ]
+        // {
+        //     "name": "Pytorch LM memorize",
+        //     "type": "python",
+        //     "request": "launch",
+        //     "program": "${workspaceFolder}/LM_Memorization/extraction.py",
+        //     "console": "integratedTerminal",
+        //     "justMyCode": true,
+        //     "args": [
+        //         "--N",
+        //         "10",
+        //         "--batch-size",
+        //         "8",
+        //         "--internet-sampling",
+        //         "--wet-file",
+        //         "./LM_Memorization/commoncrawl.warc.wet"
+        //     ]
+        // },
+        // {
+        //     "name": "load_nsc_dataset",
+        //     "type": "python",
+        //     "request": "launch",
+        //     "program": "${workspaceFolder}/mindformers/tools/dataset_preprocess/gpt2/nsc_data_process.py",
+        //     "console": "integratedTerminal",
+        //     "justMyCode": true,
+        //     "args": [
+        //         "--input_file",
+        //         "./data/nsc4.train_final.txt",
+        //         "--output_file",
+        //         "./data/train.mindrecord",
+        //         "--max_length",
+        //         "1025"
+        //     ]
+        // },
+        // {
+        //     "name": "process dataset",
+        //     "type": "python",
+        //     "request": "launch",
+        //     "program": "${workspaceFolder}/mindformers/tools/dataset_preprocess/gpt2/wikitext2_data_process.py",
+        //     "console": "integratedTerminal",
+        //     "justMyCode": true,
+        //     "args": [
+        //         "--input_file",
+        //         "./wikitext-2/wiki.test.tokens",
+        //         "--output_file",
+        //         "./wikitext-2.test.mindrecord",
+        //         "--max_length",
+        //         "1025"
+        //     ]
+        // },
+        // {
+        //     "name": "finetune gpt2",
+        //     "type": "python",
+        //     "request": "launch",
+        //     "program": "${workspaceFolder}/run_mindformer.py",
+        //     "console": "integratedTerminal",
+        //     "justMyCode": true,
+        //     "args": [
+        //         "--config",
+        //         "configs/gpt2/run_gpt2.yaml",
+        //         "--run_mode",
+        //         "train",
+        //         "--device_target",
+        //         "GPU",
+        //         "--train_dataset_dir",
+        //         "./wikitext-2.train.mindrecord"
+        //     ]
+        // },
+        // {
+        //     "name": "nsc finetune gpt2 ",
+        //     "type": "python",
+        //     "request": "launch",
+        //     "program": "${workspaceFolder}/run_mindformer.py",
+        //     "console": "integratedTerminal",
+        //     "justMyCode": true,
+        //     "args": [
+        //         "--config",
+        //         "configs/gpt2/run_gpt2_nsc.yaml",
+        //         "--run_mode",
+        //         "finetune",
+        //         "--load_checkpoint",
+        //         "./checkpoint_download/gpt2/gpt2.ckpt",
+        //         "--device_target",
+        //         "GPU",
+        //         "--train_dataset_dir",
+        //         "./data/train.mindrecord"
+        //     ]
+        // },
+    // ]
+}
